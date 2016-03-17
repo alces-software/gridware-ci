@@ -1,5 +1,9 @@
 #!/bin/bash
 packages=$(git diff --name-only ${TRAVIS_COMMIT_RANGE} | grep metadata.yml | cut -f1-3 -d'/')
+if [ -f .gridware-ci/packages.rc ]; then
+    . .gridware-ci/packages.rc
+    packages="${force_packages} ${packages}"
+fi
 if [ "${packages}" ]; then
     echo "Changed packages within ${TRAVIS_COMMIT_RANGE}: ${packages}"
     failed=()
