@@ -1,5 +1,5 @@
 #!/bin/bash
-packages=$(git diff --name-only master..${TRAVIS_COMMIT} | grep metadata.yml | cut -f1-3 -d'/')
+packages=$(git diff --name-only ${TRAVIS_COMMIT_RANGE} | grep metadata.yml | cut -f1-3 -d'/')
 if [ -f .gridware-ci/packages.rc ]; then
     . .gridware-ci/packages.rc
 fi
