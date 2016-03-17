@@ -2,13 +2,12 @@
 packages=$(git diff --name-only ${TRAVIS_COMMIT_RANGE} | grep metadata.yml | cut -f1-3 -d'/')
 if [ -f .gridware-ci/packages.rc ]; then
     . .gridware-ci/packages.rc
-    packages="${force_packages} ${packages}"
 fi
-if [ "${packages}" ]; then
+if [ -n "${packages}" -o -n "${force_packages}" ]; then
     echo "Changed packages within ${TRAVIS_COMMIT_RANGE}: ${packages}"
     failed=()
     img="alces/packages-${TRAVIS_COMMIT}-${cw_DIST}-${cw_VERSION}"
-    for a in ${packages}; do
+    for a in ${packages} ${force_packages}; do
 	docker tag $img $img:build
 	nicename="$(echo "$a" | tr '/' '-')"
 	unset ci_skip export_args export_skip install_args export_packages
