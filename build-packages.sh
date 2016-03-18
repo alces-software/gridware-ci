@@ -14,7 +14,9 @@ if [ -n "${packages}" -o -n "${force_packages}" ]; then
 	if [ -f .gridware-ci/tweaks/${nicename}.sh ]; then
 	    . .gridware-ci/tweaks/${nicename}.sh
 	fi
-	if [ -z "$ci_skip" ]; then
+	if [[ "$a" == ext/* ]]; then
+	    echo "Skipping external package: ${a}"
+	elif [ -z "$ci_skip" ]; then
 	    log_output="$HOME/logs/build-${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}/${nicename}"
 	    build_output="$HOME"/'$dist'
 	    mkdir -p "${log_output}" "${build_output}"
