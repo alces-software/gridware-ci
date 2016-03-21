@@ -7,9 +7,9 @@ deps+=(libs-openblas-0.2.15)
 deps+=(libs-lapack-3.5.0)
 deps+=(libs-fftw3_double-3.3.4)
 deps+=(libs-suitesparse-4.5.1)
+deps+=(mpi-openmpi-1.8.5)
 deps+=(libs-arpack-ng-3.3.0)
 deps+=(libs-libgit2-0.23.4)
-deps+=(mpi-openmpi-1.8.5)
 for dep in "${deps[@]}"; do
     docker run ${img}:build /bin/bash -c "curl -L https://s3-eu-west-1.amazonaws.com/packages.alces-software.com/gridware/%24dist/${dep}-${cw_DIST}.tar.gz > /tmp/${dep}-${cw_DIST}.tar.gz"
     docker commit $(docker ps -alq) $img:build
