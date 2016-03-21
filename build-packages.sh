@@ -1,4 +1,5 @@
 #!/bin/bash
+TRAVIS_COMMIT_RANGE="${TRAVIS_COMMIT_RANGE:-${TRAVIS_COMMIT}^..${TRAVIS_COMMIT}}"
 packages=$(git diff --name-only ${TRAVIS_COMMIT_RANGE} | grep metadata.yml | cut -f1-3 -d'/')
 if [ -f .gridware-ci/packages.rc ]; then
     . .gridware-ci/packages.rc
