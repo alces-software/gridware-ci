@@ -7,7 +7,7 @@ deps+=(libs-openblas-0.2.15)
 deps+=(libs-lapack-3.5.0)
 deps+=(libs-fftw3_double-3.3.4)
 deps+=(libs-suitesparse-4.5.1)
-deps+=(libs-arpack-ng-3.2.0)
+deps+=(libs-arpack-ng-3.3.0)
 deps+=(libs-libgit2-0.23.4)
 deps+=(mpi-openmpi-1.8.5)
 for dep in "${deps[@]}"; do
