@@ -1,3 +1,6 @@
+docker run ${img}:build /bin/bash -c "yum install -y -e0 which"
+docker commit $(docker ps -alq) $img:build
+
 # install dependencies
 deps=(mpi-openmpi-1.8.5)
 for dep in "${deps[@]}"; do
