@@ -9,5 +9,5 @@ if [ "$TRAVIS_BRANCH" == "master" -a "$TRAVIS_PULL_REQUEST" == "false" ]; then
 fi
 artifacts -f multiline upload \
 	  --target-paths 'gridware_builds' \
-	  --working_dir "$HOME/logs" \
+	  --working-dir "$HOME/logs" \
           build-$TRAVIS_BUILD_NUMBER
