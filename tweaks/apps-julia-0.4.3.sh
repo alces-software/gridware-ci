@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 # install dependencies
 deps=(apps-patchelf-0.8)
 deps+=(libs-llvm-3.7.1)
