@@ -1,5 +1,5 @@
 install_args="--variant=all"
-export_packages="numpy numpy_python3 numpy_python34"
+export_packages="libs/numpy libs/numpy_python3 libs/numpy_python34"
 # install dependencies
 deps=(libs-atlas-3.10.2 apps-python-2.7.8 apps-python3-3.3.3 apps-python3-3.4.3)
 for dep in "${deps[@]}"; do

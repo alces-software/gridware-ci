@@ -1,6 +1,6 @@
 install_args="--variant=all"
 export_args="--ignore-bad"
-export_packages="fftw3_float fftw3_double fftw3_long-double"
+export_packages="libs/fftw3_float libs/fftw3_double libs/fftw3_long-double"
 # install dependencies
 deps=(mpi-openmpi-1.8.5)
 for dep in "${deps[@]}"; do
