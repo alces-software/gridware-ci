@@ -35,6 +35,7 @@ if [ -n "${packages}" -o -n "${force_packages}" ]; then
 	    fi
 	    ctr=$(docker ps -alq)
 	    docker cp ${ctr}:/var/log/gridware "${log_output}"
+	    docker cp ${ctr}:/root/.cpanm/build.log "${log_output}"/cpanm-build.log.$(date +%Y%m%d%H%M%S)
 	    for b in ${export_packages:-${a}}; do
 		nicename="$(echo "$b" | tr '/' '-')"
 		docker cp ${ctr}:/tmp/${nicename}-${cw_DIST}.tar.gz "${build_output}"
