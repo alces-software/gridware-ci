@@ -1,6 +1,6 @@
 install_args="--variant=all"
 export_args="--ignore-bad"
-export_packages="libs/scipy libs/scipy_python3 libs/scipy_python34"
+export_packages="libs/scipy/0.17.0 libs/scipy_python3/0.17.0 libs/scipy_python34/0.17.0"
 # install dependencies
 deps=(apps-patchelf-0.9 libs-atlas-3.10.2)
 deps+=(apps-python-2.7.8 apps-python3-3.3.3 apps-python3-3.4.3)
