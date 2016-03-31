@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 # install dependencies
 deps=(apps-cpanminus-1.5017 apps-samtools-0.1.19)
 for dep in "${deps[@]}"; do
