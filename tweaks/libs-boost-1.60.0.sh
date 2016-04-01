@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 # install dependencies
 deps=(mpi-openmpi-1.8.5 apps-python-2.7.8)
 for dep in "${deps[@]}"; do
