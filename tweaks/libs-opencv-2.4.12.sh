@@ -1,4 +1,5 @@
 install_args="--variant=all"
+export_args="--ignore-bad"
 export_packages="libs/opencv/2.4.12 libs/opencv_tbb/2.4.12"
 # install dependencies
 deps=(apps-cmake-3.4.3)
