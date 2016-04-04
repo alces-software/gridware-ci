@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 # install dependencies
 deps=(apps-python-2.7.8 apps-setuptools-15.1)
 for dep in "${deps[@]}"; do
