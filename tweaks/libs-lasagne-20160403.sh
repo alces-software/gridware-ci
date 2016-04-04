@@ -1,5 +1,5 @@
 install_args="--variant=all"
-export_packages="libs/lasagne/20160403 libs/lasagne_python3/0.8.0 libs/lasagne_python34/0.8.0"
+export_packages="libs/lasagne/20160403 libs/lasagne_python3/20160403 libs/lasagne_python34/20160403"
 # install dependencies
 deps=(libs-atlas-3.10.2)
 deps+=(apps-python-2.7.8 apps-setuptools-15.1 libs-numpy-1.9.2 libs-scipy-0.17.0 libs-theano-0.8.0)
