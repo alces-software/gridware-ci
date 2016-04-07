@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 # install dependencies
 deps=(libs-lapack-3.5.0 libs-blas-3.6.0)
 for dep in "${deps[@]}"; do
