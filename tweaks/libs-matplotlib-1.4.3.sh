@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 install_args="--variant=all"
 export_packages="libs/matplotlib/1.4.3 libs/matplotlib_python3/1.4.3 libs/matplotlib_python34/1.4.3"
 # install dependencies
