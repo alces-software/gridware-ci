@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 install_args="--variant=all"
 export_packages="apps/cython/0.23.4 apps/cython_python3/0.23.4 apps/cython_python34/0.23.4"
 # install dependencies
