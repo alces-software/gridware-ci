@@ -1,9 +1,9 @@
 #!/bin/bash
-set -ex
+set -e
 if [ "$TRAVIS_SECURE_ENV_VARS" == "true" ]; then
     echo "Logs were uploaded to S3. See:"
     echo ""
-    echo "https://console.aws.amazon.com/s3/home?region=eu-west-1#&bucket=packages.alces-software.com&prefix=gridware_builds/build_${TRAVIS_BUILD_NUMBER}/"
+    echo "https://console.aws.amazon.com/s3/home?region=eu-west-1#&bucket=packages.alces-software.com&prefix=gridware_builds/build_${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}"
 else
     cd "$HOME/logs"
     for a in $(find .); do
