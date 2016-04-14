@@ -1,6 +1,6 @@
 #!/bin/bash -x
 export ARTIFACTS_REGION='eu-west-1'
-env | grep ARTIFACTS
+env | grep ARTIFACTS | grep -v SECRET
 if [ "$TRAVIS_BRANCH" == "master" -a "$TRAVIS_PULL_REQUEST" == "false" ]; then
     artifacts -f multiline upload \
 	      --permissions=public-read \
