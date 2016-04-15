@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 # install dependencies
 deps=(apps-bamtools-2.3.0 apps-cmake-3.4.3)
 for dep in "${deps[@]}"; do
