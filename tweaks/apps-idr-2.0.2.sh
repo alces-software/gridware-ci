@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 install_args="--variant=all"
 export_packages="apps/idr_python3/2.0.2 apps/idr_python34/2.0.2"
 # install dependencies
