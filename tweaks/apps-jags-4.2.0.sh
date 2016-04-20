@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 # install dependencies
 deps=(libs-atlas-3.10.2)
 for dep in "${deps[@]}"; do
