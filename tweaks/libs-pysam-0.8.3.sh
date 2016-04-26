@@ -1,3 +1,5 @@
+install_args="--variant=all"
+export_packages="libs/pysam/0.8.3 libs/pysam_python3/0.8.3 libs/pysam_python34/0.8.3"
 # install dependencies
 deps=(apps-python-2.7.8 apps-python3-3.3.3 apps-python3-3.4.3 apps-setuptools-15.1 apps-setuptools_python3-15.1 apps-setuptools_python34-15.1 apps-cython-0.23.4 apps-cython_python3-0.23.4 apps-cython_python34-0.23.4)
 for dep in "${deps[@]}"; do
