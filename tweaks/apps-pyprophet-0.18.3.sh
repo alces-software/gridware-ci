@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 # install dependencies
 deps=(apps-python-2.7.8  libs-atlas-3.10.2 apps-setuptools-15.1 libs-numpy-1.9.2 libs-pandas-0.17.0 libs-numexpr-2.4.4 libs-scipy-0.17.0 libs-matplotlib-1.4.3)
 for dep in "${deps[@]}"; do
