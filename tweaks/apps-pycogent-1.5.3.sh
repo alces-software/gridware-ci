@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 # install dependencies
 deps=(libs-atlas-3.10.2 apps-python-2.7.8 libs-numpy-1.9.2)
 for dep in "${deps[@]}"; do
