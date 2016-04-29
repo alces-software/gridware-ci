@@ -1,5 +1,5 @@
 # install dependencies
-deps=(apps-python-2.7.8 libs-atlas-3.10.2 libs-numpy-1.9.2 libs-panads-0.17.0 apps-setuptools-15.1 libs-numexpr-2.4.4 libs-scipy-0.17.0 libs-matplotlib-1.4.3)
+deps=(apps-python-2.7.8 libs-atlas-3.10.2 libs-numpy-1.9.2 libs-pandas-0.17.0 apps-setuptools-15.1 libs-numexpr-2.4.4 libs-scipy-0.17.0 libs-matplotlib-1.4.3)
 for dep in "${deps[@]}"; do
     docker run ${img}:build /bin/bash -c "curl -L https://s3-eu-west-1.amazonaws.com/packages.alces-software.com/gridware/%24dist/${dep}-${cw_DIST}.tar.gz > /tmp/${dep}-${cw_DIST}.tar.gz"
     docker commit $(docker ps -alq) $img:build
