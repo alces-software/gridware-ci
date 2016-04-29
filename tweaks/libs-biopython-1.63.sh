@@ -1,5 +1,5 @@
 install_args="--variant=all"
-#export_args="--ignore-bad"
+export_args="--ignore-bad"
 export_packages="libs/biopython/1.63 libs/biopython_python3/1.63"
 # install dependencies
 deps=(libs-atlas-3.10.2)
