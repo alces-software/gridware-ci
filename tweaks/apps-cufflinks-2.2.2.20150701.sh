@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 # install dependencies
 deps=(mpi-openmpi-1.8.5 apps-python-2.7.8 libs-boost-1.55.0 apps-samtools-0.1.19 libs-eigen-3.2.4)
 for dep in "${deps[@]}"; do
