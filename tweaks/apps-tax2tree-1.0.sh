@@ -1,4 +1,4 @@
-# export_args="--ignore-bad"
+export_args="--ignore-bad"
 # install dependencies
 deps=(apps-python-2.7.8 libs-atlas-3.10.2 libs-numpy-1.9.2 apps-pycogent-1.5.3)
 for dep in "${deps[@]}"; do
