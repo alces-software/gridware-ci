@@ -1,4 +1,5 @@
 # export_args="--ignore-bad"
+install_args="--variant=all"
 export_packages="apps/virtualenv/13.1.2 apps/virtualenv_python3/13.1.2 apps/virtualenv_python34_13.1.2"
 # install dependencies
 deps=(apps-python-2.7.8 apps-python3-3.3.3 apps-python3-3.4.3)
