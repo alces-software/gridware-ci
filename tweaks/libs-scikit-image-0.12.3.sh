@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 install_args="--variant=all"
 export_packages="libs/scikit-image/0.12.3 libs/scikit-image_python3/0.12.3 libs/scikit-image_python34/0.12.3"
 # install dependencies
