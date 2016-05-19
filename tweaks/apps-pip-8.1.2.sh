@@ -1,4 +1,4 @@
-#export_args="--ignore-bad"
+export_args="--ignore-bad"
 install_args="--variant=all"
 export_packages="apps/pip/8.1.2 apps/pip_python3/8.1.2 apps/pip_python34/8.1.2"
 # install dependencies
