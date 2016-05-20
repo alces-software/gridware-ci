@@ -14,3 +14,8 @@ skip_install="$skip_install main/apps/bsoft/1.9.1"
 skip_install="$skip_install main/libs/opencv/2.4.9:default main/libs/opencv/2.4.9:tbb"
 # https://github.com/alces-software/packager-base/issues/152
 skip_install="$skip_install main/libs/opencv/2.4.12:default main/libs/opencv/2.4.12:tbb"
+
+# skip as dependency libs/nvidia-cuda is too large to sensibly download
+skip_install="$skip_install main/apps/gpuburn/0.6"
+# skip as this package is too large to sensibly download
+skip_install="$skip_install main/libs/nvidia-cuda/7.5.18"
