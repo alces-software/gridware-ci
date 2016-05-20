@@ -15,16 +15,15 @@ for a in ${packages}; do
     fi
     if [ "$variants" ]; then
         for v in ${variants}; do
-            mkdir -p "${log_output}-${variant}"
-            install_args="--variant=$variant"
+            mkdir -p "${log_output}-${v}"
+            install_args="--variant=$v"
             docker run ${img}:base /bin/bash -l -c "alces gridware install --yes --non-interactive --binary ${a} ${install_args}"
             if [ $? -gt 0 ]; then
-                failed+=(${a})
+                failed+=(${a}_${v})
             fi
             ctr=$(docker ps -alq)
-            docker cp ${ctr}:/var/log/gridware "${log_output}-${variant}"
+            docker cp ${ctr}:/var/log/gridware "${log_output}-${v}"
             docker rm ${ctr}
-            docker rmi $(docker images -q -f "dangling=true")
         done
     else
         mkdir -p "${log_output}"
@@ -35,7 +34,6 @@ for a in ${packages}; do
         ctr=$(docker ps -alq)
         docker cp ${ctr}:/var/log/gridware "${log_output}"
         docker rm ${ctr}
-        docker rmi $(docker images -q -f "dangling=true")
     fi
 done
 if [ "${failed[*]}" ]; then
