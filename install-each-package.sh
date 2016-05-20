@@ -1,7 +1,10 @@
 #!/bin/bash
 img="alces/packages-${TRAVIS_COMMIT}-${cw_DIST}-${cw_VERSION}"
 docker tag $img $img:base
-packages=$(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/{apps,libs,compilers,mpi}/${pattern}*")
+packages="$(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/apps/${pattern}*")"
+packages="$packages $(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/libs/${pattern}*")"
+packages="$packages $(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/compilers/${pattern}*")"
+packages="$packages $(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/mpi/${pattern}*")"
 if [ -f .gridware-ci/packages.rc ]; then
     . .gridware-ci/packages.rc
 fi
