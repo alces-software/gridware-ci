@@ -18,7 +18,7 @@ if [ -n "${packages}" -o -n "${force_packages}" ]; then
         if [[ "$a" == ext/* ]]; then
             echo "Skipping external package: ${a}"
         elif [ -z "$ci_skip" ]; then
-            log_output="$HOME/logs/build-${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}/${nicename}"
+            log_output="$HOME/logs/volatile-${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}/${nicename}"
             build_output="$HOME"/'$dist'
             mkdir -p "${log_output}" "${build_output}"
             if [ "${cw_VERSION}" != "1.4.0" ]; then
