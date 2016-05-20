@@ -1,7 +1,7 @@
 #!/bin/bash
 img="alces/packages-${TRAVIS_COMMIT}-${cw_DIST}-${cw_VERSION}"
 docker tag $img $img:base
-packages=$(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/*")
+packages=$(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/{apps,libs,compilers,mpi}/${pattern}*")
 failed=()
 for a in ${packages}; do
     nicename="$(echo "$a" | tr '/' '-')"
