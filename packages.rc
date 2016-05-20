@@ -1,1 +1,2 @@
 force_packages=""
+skip_install="main/apps/julia/0.4.3 main/apps/julia/0.4.5 main/apps/memesuite/4.11.1:mpi main/apps/nucleoatac/0.3.1:python3 main/apps/nucleoatac/0.3.1:python34 main/apps/bsoft/1.9.1"
