@@ -5,7 +5,7 @@ packages=$(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main
 failed=()
 for a in ${packages}; do
     nicename="$(echo "$a" | tr '/' '-')"
-    log_output="$HOME/logs/build-${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}/${nicename}"
+    log_output="$HOME/logs/main-${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}/${nicename}"
     # determine variants
     variants="$(docker run --rm ${img}:base /bin/bash -l -c "alces gridware install ${a} --variant INVALID")"
     if [[ "$variants" != *'no variants'* ]]; then
@@ -13,13 +13,16 @@ for a in ${packages}; do
     else
         variants=""
     fi
+    # XXX - should detect "NOTICE" and/or refuse to import during install somehow
+    # XXX - should be able to explicitly specify "no compile only import"
+    # XXX - perform smoke tests
     if [ "$variants" ]; then
         for v in ${variants}; do
             mkdir -p "${log_output}-${v}"
             install_args="--variant=$v"
             docker run ${img}:base /bin/bash -l -c "alces gridware install --yes --non-interactive --binary ${a} ${install_args}"
             if [ $? -gt 0 ]; then
-                failed+=(${a}_${v})
+                failed+=("${a} (${v})")
             fi
             ctr=$(docker ps -alq)
             docker cp ${ctr}:/var/log/gridware "${log_output}-${v}"
