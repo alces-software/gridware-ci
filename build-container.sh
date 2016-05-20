@@ -9,6 +9,12 @@ if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
 else
     TREEISH="$(git rev-parse HEAD^2)"
 fi
-docker build --build-arg treeish=${TREEISH} --build-arg repo_slug="${REPO}" \
-       -t "alces/packages-${TRAVIS_COMMIT}-${cw_DIST}-${cw_VERSION}" \
-       ".gridware-ci/${cw_DIST}-${cw_VERSION}"
+if [ "$1" == "main" ]; then
+    docker build --build-arg treeish=${TREEISH} --build-arg repo_slug="${REPO}" \
+           -t "alces/packages-${TRAVIS_COMMIT}-${cw_DIST}-${cw_VERSION}" \
+           ".gridware-ci/${cw_DIST}-${cw_VERSION}-main"
+else
+    docker build --build-arg treeish=${TREEISH} --build-arg repo_slug="${REPO}" \
+           -t "alces/packages-${TRAVIS_COMMIT}-${cw_DIST}-${cw_VERSION}" \
+           ".gridware-ci/${cw_DIST}-${cw_VERSION}"
+fi
