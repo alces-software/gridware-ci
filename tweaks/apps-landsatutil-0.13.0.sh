@@ -1,6 +1,6 @@
 #export_args="--ignore-bad"
 # install dependencies
-install_args="--variant=all"
+#install_args="--variant=all"
 #export_packages="apps-landsatutil-0.13.0 apps-landsatutil_python3-0.13.0 apps-landsatutil_python34-0.13.0"
 deps=(libs-atlas-3.10.2 apps-python-2.7.8 apps-setuptools-15.1 apps-pip-8.1.2 libs-numpy-1.10.4 libs-gdal-2.1.0 libs-scipy-0.17.0 libs-matplotlib-1.5.1 libs-scikit-image-0.12.3)
 for dep in "${deps[@]}"; do
