@@ -2,6 +2,7 @@
 img="alces/packages-${TRAVIS_COMMIT}-${cw_DIST}-${cw_VERSION}"
 docker tag $img $img:base
 packages=$(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/*")
+failed=()
 for a in ${packages}; do
     nicename="$(echo "$a" | tr '/' '-')"
     log_output="$HOME/logs/build-${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}/${nicename}"
@@ -16,21 +17,25 @@ for a in ${packages}; do
         for v in ${variants}; do
             mkdir -p "${log_output}-${variant}"
             install_args="--variant=$variant"
-            docker run --rm ${img}:base /bin/bash -l -c "alces gridware install --yes --non-interactive --binary ${a} ${install_args}"
+            docker run ${img}:base /bin/bash -l -c "alces gridware install --yes --non-interactive --binary ${a} ${install_args}"
             if [ $? -gt 0 ]; then
                 failed+=(${a})
             fi
             ctr=$(docker ps -alq)
             docker cp ${ctr}:/var/log/gridware "${log_output}-${variant}"
+            docker rm ${ctr}
+            docker rmi $(docker images -q -f "dangling=true")
         done
     else
         mkdir -p "${log_output}"
-        docker run --rm ${img}:base /bin/bash -l -c "alces gridware install --yes --non-interactive --binary ${a}"
+        docker run ${img}:base /bin/bash -l -c "alces gridware install --yes --non-interactive --binary ${a}"
         if [ $? -gt 0 ]; then
             failed+=(${a})
         fi
         ctr=$(docker ps -alq)
         docker cp ${ctr}:/var/log/gridware "${log_output}"
+        docker rm ${ctr}
+        docker rmi $(docker images -q -f "dangling=true")
     fi
 done
 if [ "${failed[*]}" ]; then
