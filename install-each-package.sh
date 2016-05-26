@@ -27,8 +27,9 @@ create_smoketest() {
     cat <<EOF > ${testfile}
 #!/bin/bash -l
 set -e
+export cw_FLAGS=:verbose-modules:
 module=$(IFS="/"; echo "${module_parts[*]}")
-echo "Module is: "\${module}"
+echo "Module is: \${module}"
 module show "\${module}"
 module load "\${module}"
 env
