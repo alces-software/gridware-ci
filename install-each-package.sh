@@ -13,7 +13,9 @@ failed=()
 create_smoketest() {
     local pkg nicename
     pkg="$1"
-    variant="${pkg##*:}"
+    if [[ "${pkg}" == *":"* ]]; then
+        variant="${pkg##*:}"
+    fi
     module_parts=($(echo "${pkg%:*}" | cut -f2- -d"/" --output-delimiter=" "))
     if [ -n "${variant}" -a "${variant}" != "default" ]; then
         module_parts[1]="${module_parts[1]}_${variant}"
