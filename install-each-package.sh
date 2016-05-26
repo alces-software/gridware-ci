@@ -61,11 +61,12 @@ import_pkg() {
             docker cp $(create_smoketest "${pkg}") ${pkg_ctr}:/root/smoketest.sh
             docker commit ${pkg_ctr} $img:pkg
             docker rm ${pkg_ctr}
-
+            set -o pipefail
             docker run ${img}:pkg /root/smoketest.sh 2>&1 | tee -a "${log_output}"/test.log
             if [ $? -gt 0 ]; then
                 failed+=("${pkg}")
             fi
+            set +o pipefail
             test_ctr=$(docker ps -alq)
             docker cp ${test_ctr}:/var/log/gridware "${log_output}"
             docker rm ${test_ctr}
