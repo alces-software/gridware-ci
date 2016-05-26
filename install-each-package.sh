@@ -27,12 +27,11 @@ create_smoketest() {
     cat <<EOF > ${testfile}
 #!/bin/bash -l
 set -e
-export cw_FLAGS=:verbose-modules:
+export cw_MODULES_VERBOSE=1
 module=$(IFS="/"; echo "${module_parts[*]}")
 echo "Module is: \${module}"
 module show "\${module}"
 module load "\${module}"
-env
 EOF
     if [ -f .gridware-ci/tests/${nicename}.sh ]; then
         cat .gridware-ci/tests/${nicename}.sh >> ${testfile}
