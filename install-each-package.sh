@@ -62,7 +62,7 @@ process_pkg() {
             docker commit ${pkg_ctr} $img:pkg
             docker rm ${pkg_ctr}
 
-            docker run ${img}:pkg /root/smoketest.sh
+            docker run ${img}:pkg /root/smoketest.sh 2>&1 | tee -a "${log_output}"/test.log
             if [ $? -gt 0 ]; then
                 failed+=("${pkg}")
             fi
