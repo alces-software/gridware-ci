@@ -26,7 +26,12 @@ create_smoketest() {
     testfile=$(mktemp /tmp/smoketest.XXXXXXXX)
     cat <<EOF > ${testfile}
 #!/bin/bash -l
-module load $(IFS="/"; echo "${module_parts[*]}")
+set -e
+module=$(IFS="/"; echo "${module_parts[*]}")
+echo "Module is: "\${module}"
+module show "\${module}"
+module load "\${module}"
+env
 EOF
     if [ -f .gridware-ci/tests/${nicename}.sh ]; then
         cat .gridware-ci/tests/${nicename}.sh >> ${testfile}
