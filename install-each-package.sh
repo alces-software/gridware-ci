@@ -102,7 +102,7 @@ for a in ${packages}; do
             echo ""
         done
     else
-        process_pkg "$a" "${log_output}" "$a"
+        import_pkg "$a" "${log_output}" "$a"
     fi
     echo "========================================"
     echo ""
