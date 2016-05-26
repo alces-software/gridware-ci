@@ -41,7 +41,7 @@ EOF
     echo "${testfile}"
 }
 
-process_pkg() {
+import_pkg() {
     local pkg log_output install_args
     pkg="$1"
     log_output="$2"
@@ -97,7 +97,7 @@ for a in ${packages}; do
             echo "----------------------------------------"
             echo "  >> ${a} (${v})"
             echo "----------------------------------------"
-            process_pkg "$a:$v" "${log_output}-${v}" "${a} --variant=$v"
+            import_pkg "$a:$v" "${log_output}-${v}" "${a} --variant=$v"
             echo "----------------------------------------"
             echo ""
         done
