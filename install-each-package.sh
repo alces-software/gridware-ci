@@ -30,8 +30,9 @@ set -e
 export cw_MODULES_VERBOSE=1
 module=$(IFS="/"; echo "${module_parts[*]}")
 echo "Module is: \${module}"
-module show "\${module}"
-module load "\${module}"
+module show "\${module}" 2>&1
+module load "\${module}" 2>&1
+module list 2>&1
 EOF
     if [ -f .gridware-ci/tests/${nicename}.sh ]; then
         cat .gridware-ci/tests/${nicename}.sh >> ${testfile}
