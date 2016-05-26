@@ -9,6 +9,60 @@ if [ -f .gridware-ci/packages.rc ]; then
     . .gridware-ci/packages.rc
 fi
 failed=()
+
+create_smoketest() {
+    local pkg nicename
+    pkg="$1"
+    variant="${pkg##*:}"
+    module_parts=($(echo "${pkg%:*}" | cut -f2- -d"/" --output-delimiter=" "))
+    if [ -n "${variant}" -a "${variant}" != "default" ]; then
+        module_parts[1]="${module_parts[1]}_${variant}"
+        nicename="$(echo "${pkg#*/}" | tr '/:' '-')"
+    else
+        nicename="$(y="${pkg#*/}"; echo ${y%:*} | tr '/:' '-')"
+    fi
+    testfile=$(mktemp /tmp/smoketest.XXXXXXXX)
+    cat <<EOF > ${testfile}
+#!/bin/bash -l
+module load $(IFS="/"; echo "${module_parts[*]}")
+EOF
+    if [ -f .gridware-ci/tests/${nicename}.sh ]; then
+        cat .gridware-ci/tests/${nicename}.sh >> ${testfile}
+    fi
+    chmod 755 "${testfile}"
+    echo "${testfile}"
+}
+
+process_pkg() {
+    local pkg log_output install_args
+    if [[ " ${skip_install} " == *" $pkg "* ]]; then
+        echo "NOTICE: skipping: ${pkg}"
+    else
+        mkdir -p "${log_output}"
+        docker run ${img}:base /bin/bash -l -c "alces gridware install --yes --non-interactive --binary ${install_args}"
+        if [ $? -gt 0 ]; then
+            failed+=("${pkg}")
+            pkg_ctr=$(docker ps -alq)
+            docker cp ${pkg_ctr}:/var/log/gridware "${log_output}"
+            docker rm ${pkg_ctr}
+        else
+            pkg_ctr=$(docker ps -alq)
+            docker cp $(create_smoketest "${pkg}") ${pkg_ctr}:/root/smoketest.sh
+            docker commit ${pkg_ctr} $img:pkg
+            docker rm ${pkg_ctr}
+
+            docker run ${img}:pkg /root/smoketest.sh
+            if [ $? -gt 0 ]; then
+                failed+=("${pkg}")
+            fi
+            test_ctr=$(docker ps -alq)
+            docker cp ${test_ctr}:/var/log/gridware "${log_output}"
+            docker rm ${test_ctr}
+            docker rmi $img:pkg
+        fi
+    fi
+}
+
 for a in ${packages}; do
     nicename="$(echo "$a" | tr '/' '-')"
     log_output="$HOME/logs/main-${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}/${nicename}"
@@ -32,35 +86,12 @@ for a in ${packages}; do
             echo "----------------------------------------"
             echo "  >> ${a} (${v})"
             echo "----------------------------------------"
-            if [[ " ${skip_install} " == *" $a:$v "* ]]; then
-                echo "NOTICE: skipping: ${a}:${v}"
-            else
-                mkdir -p "${log_output}-${v}"
-                install_args="--variant=$v"
-                docker run ${img}:base /bin/bash -l -c "alces gridware install --yes --non-interactive --binary ${a} ${install_args}"
-                if [ $? -gt 0 ]; then
-                    failed+=("${a} (${v})")
-                fi
-                ctr=$(docker ps -alq)
-                docker cp ${ctr}:/var/log/gridware "${log_output}-${v}"
-                docker rm ${ctr}
-            fi
+            process_pkg "$a:$v" "${log_output}-${v}" "${a} --variant=$v"
             echo "----------------------------------------"
             echo ""
         done
     else
-        if [[ " ${skip_install} " == *" $a "* ]]; then
-            echo "NOTICE: skipping: ${a}"
-        else
-            mkdir -p "${log_output}"
-            docker run ${img}:base /bin/bash -l -c "alces gridware install --yes --non-interactive --binary ${a}"
-            if [ $? -gt 0 ]; then
-                failed+=(${a})
-            fi
-            ctr=$(docker ps -alq)
-            docker cp ${ctr}:/var/log/gridware "${log_output}"
-            docker rm ${ctr}
-        fi
+        process_pkg "$a" "${log_output}" "$a"
     fi
     echo "========================================"
     echo ""
