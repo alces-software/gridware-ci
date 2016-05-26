@@ -35,6 +35,9 @@ EOF
 
 process_pkg() {
     local pkg log_output install_args
+    pkg="$1"
+    log_output="$2"
+    install_args="$3"
     if [[ " ${skip_install} " == *" $pkg "* ]]; then
         echo "NOTICE: skipping: ${pkg}"
     else
