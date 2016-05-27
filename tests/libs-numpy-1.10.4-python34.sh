@@ -4,7 +4,6 @@ import sys
 import timeit
 
 print("version:", numpy.__version__)
-print("maxint:", sys.maxint)
 print
 
 x = numpy.random.random((1000,1000))
