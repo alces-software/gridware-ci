@@ -1,4 +1,4 @@
-python <<EOF
+python3 <<EOF
 import numpy
 import sys
 import timeit
