@@ -1,3 +1,4 @@
+export_args="--ignore-bad"
 install_args="withcheck=true"
 deps=(libs-fftw3-3.3.4)
 for dep in "${deps[@]}"; do
