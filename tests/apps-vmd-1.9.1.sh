@@ -1,1 +1,1 @@
-vmd --help
+echo "quit" | vmd
