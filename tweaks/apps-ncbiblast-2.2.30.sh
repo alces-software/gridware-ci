@@ -1,1 +1,2 @@
-export_args="--ignore-bad"
+# Exceeds build time
+ci_skip="true"
