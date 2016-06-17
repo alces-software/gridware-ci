@@ -1,5 +1,3 @@
-install_args="--variant=all"
-export_packages="apps/mothur/1.34.4 apps/mothur_mpi/1.34.4"
 # install dependencies
 deps=(mpi-openmpi-1.8.5)
 for dep in "${deps[@]}"; do
