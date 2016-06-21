@@ -1,8 +1,5 @@
 force_packages=""
 
-# https://github.com/alces-software/packager-base/issues/80
-skip_install="$skip_install main/apps/memesuite/4.11.1:mpi"
-
 # skip as dependency libs/nvidia-cuda is too large to sensibly download
 skip_install="$skip_install main/apps/gpuburn/0.6"
 # skip as this package is too large to sensibly download
