@@ -1,4 +1,3 @@
-export_args="--ignore-bad"
 # install dependencies
 deps=(mpi-openmpi-1.8.5 libs-atlas-3.10.2)
 for dep in "${deps[@]}"; do
