@@ -1,5 +1,3 @@
-install_args="--variant=all"
-export_packages="libs/seaborn/0.7.0 libs/seaborn_python3/0.7.0 libs/seaborn_python34/0.7.0"
 # install dependencies
 deps=(libs-atlas-3.10.2)
 for dep in "${deps[@]}"; do
