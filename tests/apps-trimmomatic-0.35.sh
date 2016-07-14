@@ -1,1 +1,1 @@
-trimmomatic -version
+trimmomatic 2>&1 | grep "PE"
