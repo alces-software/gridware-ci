@@ -1,1 +1,2 @@
+export OPENMS_DATA_PATH=$OPENMSDIR/share/OpenMS
 OpenMSInfo
