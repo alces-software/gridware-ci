@@ -1,5 +1,5 @@
 install_args="--variant=all"
-export_packages="libs/pythonlevenshtein/0.12.0 libs/pythonlevenshtein_python3/0.12.0 libs/pythonlevenshtein_python34/0.12.0 
+export_packages="libs/pythonlevenshtein/0.12.0 libs/pythonlevenshtein_python3/0.12.0 libs/pythonlevenshtein_python34/0.12.0"
 # install dependencies
 deps=(apps-python-2.7.8 apps-python3-3.3.3 apps-python3-3.4.3) 
 for dep in "${deps[@]}"; do
