@@ -1,1 +1,1 @@
-install_args="nprocs=2 class=A"
+install_args="nprocs=4 class=A"
