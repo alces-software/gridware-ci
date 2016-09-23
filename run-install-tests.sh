@@ -37,6 +37,18 @@ cat <<EOF
 =============================================================
  DONE DONE DONE DONE DONE DONE DONE DONE DONE DONE DONE DONE
 =============================================================
-Refer to logs regarding any failures shown:
 EOF
-cat $HOME/logs/failures.log
+if [ -f $HOME/logs/failures.log ]; then
+    cat <<EOF
+
+SO FAIL. CRY.
+
+Refer to these logs regarding failures:
+EOF
+    cat $HOME/logs/failures.log
+else
+    cat <<EOF
+
+SUCH SUCCESS! AMAZE!
+EOF
+fi
