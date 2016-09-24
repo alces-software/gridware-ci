@@ -1,1 +1,1 @@
-pyprophet --version | grep ^0.18
+pyprophet --version | grep ^0.22
