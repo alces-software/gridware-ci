@@ -1,1 +1,2 @@
-php --help
+php --help && \
+echo '<?php require("System.php") ?>' | php
