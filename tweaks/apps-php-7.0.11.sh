@@ -1,1 +1,1 @@
-export_args="--patch-binary 'bin/php-cgi,bin/php,bin/phpdbg'"
+export_args="--patch-binary 'bin/phar.phar,bin/php-cgi,bin/php,bin/phpdbg'"
