@@ -1,7 +1,7 @@
 #!/bin/bash
 img="${baseimg:-alces/packages-${TRAVIS_COMMIT}-${cw_DIST}-${cw_VERSION}}"
 docker tag $img $img:base
-packages="$(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/apps/${pattern}*")"
+packages="$(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/apps/${pattern}* | grep '^main/'")"
 packages="$packages $(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/libs/${pattern}*")"
 packages="$packages $(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/compilers/${pattern}*")"
 packages="$packages $(docker run --rm ${img}:base /bin/bash -l -c "alces gridware list main/mpi/${pattern}*")"
