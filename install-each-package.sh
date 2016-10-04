@@ -81,7 +81,7 @@ for a in ${packages}; do
     # determine variants
     variants="$(docker run --rm ${img}:base /bin/bash -l -c "alces gridware install ${a} --variant INVALID")"
     if [[ "$variants" != *'no variants'* ]]; then
-        variants="$(echo "$variants" | tail -n+2 | sed "s/.*choose from: \(.*\)/\1/g" | tr -d ',')"
+        variants="$(echo "$variants" | grep INVALID | sed "s/.*choose from: \(.*\)/\1/g" | tr -d ',')"
     else
         variants=""
     fi
