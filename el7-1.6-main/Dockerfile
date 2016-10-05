@@ -9,6 +9,6 @@ RUN rm -rf /opt/clusterware/var/lib/gridware/repos/main
 RUN /opt/clusterware/opt/git/bin/git clone https://github.com/$repo_slug /opt/clusterware/var/lib/gridware/repos/main
 RUN cd /opt/clusterware/var/lib/gridware/repos/main && /opt/clusterware/opt/git/bin/git checkout ${treeish} || true
 RUN sed -i -e 's,:default_binary_url:.*,:default_binary_url: https://s3-eu-west-1.amazonaws.com/packages.alces-software.com/gridware/%24dist,g' /opt/gridware/etc/gridware.yml
-RUN bash -c 'echo cw_STORAGE_http_base_url="https://s3-eu-west-1.amazonaws.com/packages.alces-software.com/gridware/%24data" > /etc/xdg/clusterware/storage/gridware-data.http.rc'
+RUN bash -c 'mkdir -p /etc/xdg/clusterware/storage && echo cw_STORAGE_http_base_url="https://s3-eu-west-1.amazonaws.com/packages.alces-software.com/gridware/%24data" > /etc/xdg/clusterware/storage/gridware-data.http.rc'
 
 CMD ["/bin/bash"]
