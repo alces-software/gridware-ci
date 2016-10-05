@@ -1,3 +1,4 @@
+export_args="--patch-binary 'bin/Espresso'"
 # install dependencies
 deps=(mpi-openmpi-1.8.5)
 for dep in "${deps[@]}"; do
