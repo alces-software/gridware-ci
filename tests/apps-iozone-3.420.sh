@@ -1,7 +1,9 @@
-if [ -z "$CW_DOCPATH" ]; then
-    :
-else
-    alces template copy iozone ~/iozone.sh
+if [[ ":$CW_DOCPATH" == *":$IOZONEDIR"* ]]; then
 
-    /bin/bash -e -l ~/iozone.sh
+  alces template copy iozone ~/iozone.sh
+
+  /bin/bash -e -l ~/iozone.sh
+
+else
+  iozone -h
 fi
