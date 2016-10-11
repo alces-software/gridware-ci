@@ -1,5 +1,11 @@
-alces template prepare abyss
+if [[ ":$CW_DOCPATH" == *":$ABYSSDIR"* ]]; then
 
-alces template copy abyss ~/abyss.sh
+  alces template prepare abyss
 
-/bin/bash -e -l ~/abyss.sh
+  alces template copy abyss ~/abyss.sh
+
+  /bin/bash -e -l ~/abyss.sh
+
+else
+  abyss -h
+fi
