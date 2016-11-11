@@ -1,4 +1,4 @@
-f [[ ":$CW_DOCPATH" == *":$FASTUNIQDIR"* ]]; then
+if [[ ":$CW_DOCPATH" == *":$FASTUNIQDIR"* ]]; then
 
   alces template copy fastuniq ~/fastuniq.sh
 
