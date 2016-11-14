@@ -24,6 +24,7 @@ if [ -z "$(docker images -q gridware-ci-volatile)" ]; then
        .gridware-ci/el7-1.6
 fi
 img="gridware-ci-volatile"
+docker tag $img $img:build
 cw_DIST=el7
 nicename="$(echo "$pkg" | tr '/' '-')"
 if [ -f .gridware-ci/tweaks/${nicename}.sh ]; then
@@ -32,14 +33,14 @@ fi
 log_output="$HOME/logs/${nicename}.$(date +%Y%m%d-%H%M%S)"
 build_output="$HOME"/dist
 mkdir -p "${log_output}" "${build_output}"
-docker run $img /bin/bash -l -c "alces gridware install --yes --non-interactive --binary-depends ${pkg} ${install_args}"
-docker commit $(docker ps -alq) $img:installed
+docker run $img:build /bin/bash -l -c "alces gridware install --yes --non-interactive --binary-depends ${pkg} ${install_args}"
+docker commit $(docker ps -alq) $img:build
 if [ $? -gt 0 ]; then
     echo "Failed :-("
 else
     for b in ${export_packages:-${pkg}}; do
-        docker commit $(docker ps -alq) $img:installed
-        docker run ${img}:installed /bin/bash -l -c "alces gridware export --non-interactive --accept-elf ${export_args} ${b}"
+        docker commit $(docker ps -alq) $img:build
+        docker run ${img}:build /bin/bash -l -c "alces gridware export --non-interactive --accept-elf ${export_args} ${b}"
         if [ $? -gt 0 ]; then
             echo "Failed :-("
             exit 1
@@ -54,4 +55,4 @@ for b in ${export_packages:-${pkg}}; do
     docker cp ${ctr}:/tmp/${nicename}-${cw_DIST}.tar.gz "${build_output}"
 done
 docker rm ${ctr}
-docker rmi $img:installed
+docker rmi $img:build
