@@ -58,11 +58,11 @@ import_pkg() {
             docker rm ${pkg_ctr}
         else
             pkg_ctr=$(docker ps -alq)
-            docker cp $(create_smoketest "${pkg}") ${pkg_ctr}:/root/smoketest.sh
+            docker cp $(create_smoketest "${pkg}") ${pkg_ctr}:/tmp/smoketest.sh
             docker commit ${pkg_ctr} $img:pkg
             docker rm ${pkg_ctr}
             set -o pipefail
-            docker run ${img}:pkg /root/smoketest.sh 2>&1 | tee -a "${log_output}"/test.log
+            docker run ${img}:pkg su testuser -c /tmp/smoketest.sh 2>&1 | tee -a "${log_output}"/test.log
             if [ $? -gt 0 ]; then
                 failed+=("${pkg}")
             fi
