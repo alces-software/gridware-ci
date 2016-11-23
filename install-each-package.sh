@@ -26,6 +26,7 @@ create_smoketest() {
     testfile=$(mktemp /tmp/smoketest.XXXXXXXX)
     cat <<EOF > ${testfile}
 #!/bin/bash -l
+cd /tmp
 set -e
 export cw_MODULES_VERBOSE=1
 module=$(IFS="/"; echo "${module_parts[*]}")
