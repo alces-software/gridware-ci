@@ -6,8 +6,10 @@ sudo apt-get -y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::="--force-c
 REPO="${TRAVIS_REPO_SLUG}"
 if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
     TREEISH="${TRAVIS_COMMIT}"
-else
+elif [ "${TRAVIS_PULL_REQUEST}" == "" ]; then
     TREEISH="$(git rev-parse HEAD^2)"
+else
+    TREEISH="${TRAVIS_PULL_REQUEST}"
 fi
 if [ "$1" == "main" ]; then
     docker build --build-arg treeish=${TREEISH} --build-arg repo_slug="${REPO}" \
