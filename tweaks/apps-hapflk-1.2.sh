@@ -6,4 +6,3 @@ for dep in "${deps[@]}"; do
     docker run ${img}:build /bin/bash -l -c "alces gridware import /tmp/${dep}-${cw_DIST}.tar.gz"
     docker commit $(docker ps -alq) $img:build
 done
-
