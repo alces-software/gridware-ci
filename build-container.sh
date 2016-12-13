@@ -3,7 +3,7 @@ set -ex
 sudo service docker stop
 sudo apt-get update
 sudo apt-get -y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::="--force-confnew" install docker-engine
-sudo service docker start
+sudo service docker start || true
 REPO="${TRAVIS_REPO_SLUG}"
 if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
     TREEISH="${TRAVIS_COMMIT}"
