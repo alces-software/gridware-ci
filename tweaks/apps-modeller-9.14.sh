@@ -1,1 +1,1 @@
-license=skip
+install_args="license=skip"
