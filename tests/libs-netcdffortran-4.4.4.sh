@@ -1,0 +1,1 @@
+nf-config --version
