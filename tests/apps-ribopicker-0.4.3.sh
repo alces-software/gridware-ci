@@ -5,5 +5,5 @@ if [[ ":$CW_DOCPATH" == *":$RIBOPICKERDIR"* ]]; then
   /bin/bash -e -l ~/ribopicker.sh
 
 else
-  ribopicker.pl -v
+  ribopicker.pl -version
 fi
