@@ -5,6 +5,7 @@ ARG --description="tree under test" treeish
 ARG --description="repo under test" repo_slug
 
 RUN /opt/clusterware/bin/alces service install gridware && /opt/clusterware/bin/alces gridware init && yum clean all
+RUN /opt/clusterware/bin/alces service install clusterware-storage && yum clean all
 RUN rm -rf /opt/clusterware/var/lib/gridware/repos/main
 RUN /opt/clusterware/opt/git/bin/git clone https://github.com/$repo_slug /opt/clusterware/var/lib/gridware/repos/main
 RUN cd /opt/clusterware/var/lib/gridware/repos/main && /opt/clusterware/opt/git/bin/git checkout ${treeish} || true
