@@ -1,4 +1,4 @@
-FROM alces/clusterware-el7:1.6
+FROM alces/clusterware-el7:1.7
 MAINTAINER Alces Software Ltd <support@alces-software.com>
 
 ARG --description="tree under test" treeish
