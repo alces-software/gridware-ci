@@ -1,3 +1,5 @@
+ci_skip="true" # exceeds 50 minute build time
+
 install_args="--variant=all"
 export_args="--ignore-bad"
 export_packages="libs/opencv/2.4.9 libs/opencv_tbb/2.4.9"
