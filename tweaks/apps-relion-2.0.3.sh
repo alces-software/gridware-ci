@@ -1,1 +1,1 @@
-install_args="--variant=default"
+install_args="--variant=default cudaarch=default"
