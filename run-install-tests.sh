@@ -8,9 +8,19 @@ yum install -y docker
 systemctl start docker
 mkdir -p /opt/gridware-ci
 cd /opt/gridware-ci
-git clone https://github.com/alces-software/gridware-packages-main
+if [ -d "gridware-packages-main" ]; then
+    echo "Remove old /opt/gridware-ci/gridware-packages-main directory first."
+    exit 1
+fi
+if ! git clone https://github.com/alces-software/gridware-packages-main; then
+    echo "Unable to clone gridware-packages-main."
+    exit 1
+fi
 cd gridware-packages-main
-git checkout $rev
+if ! git checkout $rev; then
+    echo "Unable to find specified revision: $rev"
+    exit 1
+fi
 git clone https://github.com/alces-software/gridware-ci .gridware-ci
 docker build --build-arg treeish=$rev --build-arg repo_slug=alces-software/gridware-packages-main \
        -t "gridware-ci" \
