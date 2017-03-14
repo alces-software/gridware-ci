@@ -1,1 +1,1 @@
-nm libmdb.so | grep sql
+nm $MDBTOOLSLIB/libmdb.so | grep sql
