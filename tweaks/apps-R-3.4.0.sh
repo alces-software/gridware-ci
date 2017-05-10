@@ -1,4 +1,4 @@
-export_args="--ignore-bad"
+export_args="--ignore-bad --patch-binary lib64/R/bin/Rscript,bin/Rscript"
 # install dependencies
 deps=(libs-lapack-3.5.0 libs-blas-3.6.0)
 for dep in "${deps[@]}"; do
