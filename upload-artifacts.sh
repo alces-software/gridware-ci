@@ -5,11 +5,13 @@ if [ "$TRAVIS_SECURE_ENV_VARS" == "true" ]; then
         prefix="main"
     else
         if [ "$TRAVIS_BRANCH" == "master" -a "$TRAVIS_PULL_REQUEST" == "false" ]; then
-            artifacts -f multiline upload \
-                      --permissions=public-read \
-                      --target-paths 'gridware' \
-                      --working-dir "$HOME" \
-                      '$dist'
+            if [ "${ci_UPLOAD:-true}" == "true" ]; then
+                artifacts -f multiline upload \
+                          --permissions=public-read \
+                          --target-paths 'gridware' \
+                          --working-dir "$HOME" \
+                          '$dist'
+            fi
         fi
         prefix="volatile"
     fi
