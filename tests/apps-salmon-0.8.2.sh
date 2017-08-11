@@ -1,1 +1,1 @@
-salmon --version | grep "version : 0.8.2"
+salmon --version
