@@ -24,7 +24,7 @@ fi
 git clone https://github.com/alces-software/gridware-ci .gridware-ci
 docker build --build-arg treeish=$rev --build-arg repo_slug=alces-software/gridware-packages-main \
        -t "gridware-ci" \
-       .gridware-ci/el7-1.8-main
+       .gridware-ci/el7-1.9-main
 export baseimg="gridware-ci"
 patterns="[a-bA-B] [c-fC-F] [gG] [h-kH-K] [lL] [mM][a-eA-E]"
 patterns="$patterns [mM][f-z][F-Z] [nN] [pP][a-xA-X] [pP][y-zY-Z]"
