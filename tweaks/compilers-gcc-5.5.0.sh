@@ -1,1 +1,1 @@
-ci_skip=true # build time exceeds limits
+ci_skip=true
