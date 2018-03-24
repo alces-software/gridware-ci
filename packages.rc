@@ -1,6 +1,12 @@
 force_packages=""
 
 # skip as dependency libs/nvidia-cuda is too large to sensibly download
-skip_install="$skip_install main/apps/gpuburn/0.6"
+#skip_install="$skip_install main/apps/gpuburn/0.6"
 # skip as this package is too large to sensibly download
-skip_install="$skip_install main/libs/nvidia-cuda/7.5.18"
+#skip_install="$skip_install main/libs/nvidia-cuda/7.5.18"
+
+# no binaries available
+skip_install="$skip_install main/libs/boost/1.36.0:gcc34"
+skip_install="$skip_install apps/openms/2.0.1:python"
+skip_install="$skip_install apps/openms/2.2.0:python"
+skip_install="$skip_install apps/tensorflow/1.6.0:cuda"
