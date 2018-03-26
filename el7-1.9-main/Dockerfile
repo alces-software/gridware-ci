@@ -4,6 +4,7 @@ MAINTAINER Alces Software Ltd <support@alces-software.com>
 ARG --description="tree under test" treeish
 ARG --description="repo under test" repo_slug
 
+RUN yum upgrade -y && yum clean all
 RUN /opt/clusterware/bin/alces service install gridware && /opt/clusterware/bin/alces gridware init && yum clean all
 ADD gridware.patch /tmp/gridware.patch
 RUN patch -d /opt/clusterware/opt/gridware -p1 < /tmp/gridware.patch
